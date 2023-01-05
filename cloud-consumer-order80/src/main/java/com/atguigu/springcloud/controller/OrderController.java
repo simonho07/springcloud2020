@@ -16,12 +16,7 @@ import javax.annotation.Resource;
  * 是Spring提供的用于访问Rest服务的客户端模板工具集
  * 2.RestTemplate官网：
  * https://docs.spring.io/spring-framework/docs/5.2.2.RELEASE/javadoc-api/org/springframework/web/client/RestTemplate.html
- * 3.测试：
- * --3.1 启动支付服务8001
- * --3.2 启动本服务
- * --3.3 http://localhost/consumer/payment/get/7
- * --3.4 http://localhost/consumer/payment/create?serial=atguigu09
- * 4.被RestTemplate调用的服务，参数需要加上@RequestBody
+ * 3.被RestTemplate调用的服务，参数需要加上@RequestBody
  * @author: hhzh
  * @e-mail: simon.ho07@qq.com
  * @date: 2022/12/14
@@ -30,8 +25,8 @@ import javax.annotation.Resource;
 @Slf4j
 public class OrderController {
 
-    public static final String PAYMENT_URL = "http://localhost:8001";
-
+    //    public static final String PAYMENT_URL = "http://localhost:8001";
+    public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
     @Resource
     private RestTemplate restTemplate;
 
