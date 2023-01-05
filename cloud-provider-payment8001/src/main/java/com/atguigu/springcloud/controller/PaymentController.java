@@ -21,9 +21,10 @@ public class PaymentController {
     @Resource
     private PaymentService paymentService;
 
-    //http://localhost:8001/payment/save?serial=atguigu06   postman测试
+    //postman自测，参数不需要加上@RequestBody，http://localhost:8001/payment/save?serial=atguigu06
+    //RestTemplate访问，参数需要加上@RequestBody
     @PostMapping("/payment/save")
-    public CommonResult save(Payment payment) {
+    public CommonResult save(@RequestBody Payment payment) {
 
         int result = paymentService.save(payment);
         log.info("******插入结果：" + result);
