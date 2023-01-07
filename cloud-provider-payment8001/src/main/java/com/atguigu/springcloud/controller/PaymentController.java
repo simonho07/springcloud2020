@@ -73,4 +73,13 @@ public class PaymentController {
         return discoveryClient;
     }
 
+    /**
+     * 【Ribbon之手写轮询算法】测试
+     *
+     * @return
+     */
+    @GetMapping("/payment/lb")
+    public String getPaymentLB() {
+        return serverPort;
+    }
 }
