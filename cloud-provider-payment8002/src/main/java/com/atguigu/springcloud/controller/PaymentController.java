@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @description: TODO 类描述
@@ -80,6 +81,22 @@ public class PaymentController {
      */
     @GetMapping("/payment/lb")
     public String getPaymentLB() {
+        return serverPort;
+    }
+
+    /**
+     * OpenFeign超时控制之测试
+     *
+     * @return
+     */
+    @GetMapping("/payment/feign/timeout")
+    public String paymentFeignTimeout() {
+        //线程暂停几秒钟
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return serverPort;
     }
 }
