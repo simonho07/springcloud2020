@@ -21,6 +21,7 @@ spring:
           uri: lb://cloud-payment-service      #匹配后提供服务的路由地址--动态路由
           predicates:
             - Path=/payment/lb/**         # 断言，路径相匹配的进行路由
+            - After=2023-01-11T12:01:10.574+08:00[Asia/Shanghai] #断言，这个时间串之后断言才起效
 
 eureka:
   client:
