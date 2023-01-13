@@ -1,0 +1,26 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          #uri: git@github.com:simonho07/git-demo.git
+          uri: https://github.com/simonho07/springcloud-config.git
+          force-pull: true
+          search-paths:
+            - springcloud-config  #搜索目录
+          username: simonho07
+          password: hhzh123!@#
+      label: main   #读取分支
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      #defaultZone: http://localhost:7001/eureka  #单机版
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #集群版
+
