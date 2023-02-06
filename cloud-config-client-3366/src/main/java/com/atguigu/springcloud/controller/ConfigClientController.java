@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description: TODO 类描述
  * @author: hhzh
  * @e-mail: simon.ho07@qq.com
- * @date: 2023/1/13
+ * @date: 2023/2/6
  **/
 @RestController
 @RefreshScope
@@ -23,7 +23,6 @@ public class ConfigClientController {
 
     @GetMapping("/configInfo")
     public String getConfigInfo() {
-
         return "serverPort: " + serverPort + " ------- configInfo: " + configInfo;
     }
 }
