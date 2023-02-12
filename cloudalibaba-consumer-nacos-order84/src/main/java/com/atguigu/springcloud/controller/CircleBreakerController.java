@@ -29,7 +29,8 @@ public class CircleBreakerController {
     private RestTemplate restTemplate;
 
     @GetMapping("/consumer/fallback/{id}")
-    @SentinelResource(value = "fallback")//没有任何配置
+    //@SentinelResource(value = "fallback")//没有任何配置
+    @SentinelResource(value = "fallback", fallback = "handleFallback")//只配置fallback，fallback负责业务异常
     public CommonResult<Payment> fallback(@PathVariable("id") Long id) {
 
         CommonResult<Payment> result = restTemplate.getForObject(SERVICE_URL + "/paymentSQL/" + id, CommonResult.class);
@@ -40,5 +41,11 @@ public class CircleBreakerController {
             throw new NullPointerException("NullPointerException, 空指针异常, 该id没有对应记录....");
         }
         return result;
+    }
+
+    //本例是fallback
+    public CommonResult handleFallback(@PathVariable("id") Long id, Throwable e) {
+        Payment payment = new Payment(id, "null");
+        return new CommonResult<>(444, "兜底异常handleFallback,exception内容  " + e.getMessage(), payment);
     }
 }
