@@ -5,6 +5,7 @@ import com.atguigu.springcloud.alibaba.domain.Order;
 import com.atguigu.springcloud.alibaba.service.AccountService;
 import com.atguigu.springcloud.alibaba.service.OrderService;
 import com.atguigu.springcloud.alibaba.service.StorageService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,8 @@ public class OrderServiceImpl implements OrderService {
      * @param order
      */
     @Override
+    //rollbackFor = Exception.class表示对任意异常都进行回滚
+    @GlobalTransactional(name = "fsp-create-order", rollbackFor = Exception.class)
     public void create(Order order) {
 
         //1.新建订单
